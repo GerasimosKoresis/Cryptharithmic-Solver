@@ -81,8 +81,8 @@ public class CryptoMain {
 				used[n] = true;
 				letters.put(c,n);
 				solver(used,indicator+1,numerical,letters);
-				letters.put(c, -1);
 				used[n] = false;
+				letters.put(c, -1);
 			}
 		}
 
@@ -95,9 +95,11 @@ public class CryptoMain {
 
 	     for(int i = 0; i < puzzlepiece.length; i++){
 		  char ch = puzzlepiece[i];
-		  num = num + letters.get(ch);
+		  num += letters.get(ch);
 	     }
-	     
+	     // with that we first turn the num string which is in a base = numerical into decimal
+	     // then we turn the resulting number into a string 
+	     // and send it to the checker() function to see if we have found a solution
 	     num = Integer.toString(Integer.parseInt(num, numerical),10);
 	   	 return num;
 	}
@@ -146,7 +148,7 @@ public class CryptoMain {
 			return;
 		}
 		int index = 0;
-		boolean[] used = new boolean[numerical];
+		boolean[] used = new boolean[numerical]; // it helps us to check if a value has already been assigned
 		solver(used,index, numerical, letters);
 		
 	    
